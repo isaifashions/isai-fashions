@@ -24,15 +24,21 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
-   
 }
 
 .logo{
     font-family:'Cinzel',serif;
-    font: size 50px;
+    font-size:50px;
     font-weight:700;
     letter-spacing:4px;
     color:#C89B3C;
+}
+
+.logo img{
+    display:block;
+    width:auto;
+    max-height:80px;
+    object-fit:contain;
 }
 
 nav a{
@@ -570,6 +576,7 @@ color:white;
 .logo img{
     width:auto;
     height:160px;
+    object-fit:contain;
 }
 nav{
     position: fixed;
@@ -615,10 +622,11 @@ header{
 }
 
 .logo img{
-    width:140px;
-    height:auto;
+    display:block;
+    width:auto;
+    max-height:80px;
+    object-fit:contain;
 }
-
 /* Premium Bottom Navigation */
 nav{
     position:fixed;
