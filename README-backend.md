@@ -41,16 +41,13 @@ curl http://localhost:3000/api/health
 
 ## 5. Connect the storefront
 
-Update the backend URL in the frontend before deploying:
-
-- `script.js`
-- `product.js`
-
-Replace the placeholder URL with your deployed backend URL, such as:
+Use the local backend URL while developing:
 
 ```text
-https://your-app.onrender.com/api/order
+http://localhost:3000/api/order
 ```
+
+Update `script.js` and `product.js` if you later deploy the backend to a different host.
 
 ## 6. Notes
 

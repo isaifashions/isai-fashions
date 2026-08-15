@@ -286,7 +286,7 @@ window.addEventListener("load", () => {
 
         // Send order to backend for customer WhatsApp confirmation
         const itemNames = cart.map(item => `${item.name} (${item.qty})`).join(", ");
-        fetch("https://isai-fashions.onrender.com/api/order", {
+        fetch("http://localhost:3000/api/order", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

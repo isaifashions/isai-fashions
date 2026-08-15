@@ -307,7 +307,7 @@ if (product) {
         ].filter(Boolean).join("\n");
 
         // Send order to backend for customer WhatsApp confirmation
-        fetch("https://isai-fashions.onrender.com/api/order", {
+        fetch("http://localhost:3000/api/order", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
