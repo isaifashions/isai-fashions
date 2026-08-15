@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size Guide - Isai Fashions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .size-guide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .guide-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .guide-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .guide-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .size-section {
+            margin-bottom: 50px;
+        }
+
+        .size-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .size-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .size-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .size-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .size-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .measurement-guide {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .measurement-guide h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .measurement-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .measurement-step {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+
+        .measurement-step h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .measurement-step p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .tips-section {
+            background: #fffbf0;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f5576c;
+            margin-bottom: 30px;
+        }
+
+        .tips-section h3 {
+            color: #f5576c;
+            margin-bottom: 15px;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips-section li {
+            padding: 8px 0;
+            color: #555;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tips-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-weight: bold;
+        }
+
+        .video-guide {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .video-guide h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .video-guide p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-support {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            text-align: center;
+        }
+
+        .contact-support h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .contact-support p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .help-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+
+        .help-btn:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 768px) {
+            .guide-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .size-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .size-table {
+                font-size: 0.9rem;
+            }
+
+            .size-table th,
+            .size-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <div class="logo">
+    <img src="images/logo.png" alt="Isai Fashions">
+   </div>
+   <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="orders-dashboard.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s;" 
+           onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='#333'">📊 Dashboard</a>
+        <button class="cart-toggle" id="cartToggle" type="button" aria-label="Open cart">
+            <img src="images/cart-icon.svg" alt="Cart" class="cart-icon">
+            <span id="cartCount">0</span>
+        </button>
+   </div>
+</header>
+
+<div class="size-guide-container">
+    <a href="index.html" style="color: #667eea; text-decoration: none; margin-bottom: 20px; display: inline-block;">← Back to Store</a>
+
+    <div class="guide-header">
+        <h1>Size Guide</h1>
+        <p>Find your perfect fit with our detailed size guide</p>
+    </div>
+
+    <div class="size-section">
+        <h2>Cord Sets & Tops - Size Chart</h2>
+        <table class="size-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Bust (Inches)</th>
+                    <th>Waist (Inches)</th>
+                    <th>Length (Inches)</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>S (Small)</strong></td>
+                    <td>32-34</td>
+                    <td>26-28</td>
+                    <td>25-26</td>
+                    <td>XS to S frame</td>
+                </tr>
+                <tr>
+                    <td><strong>M (Medium)</strong></td>
+                    <td>34-36</td>
+                    <td>28-30</td>
+                    <td>26-27</td>
+                    <td>S to M frame</td>
+                </tr>
+                <tr>
+                    <td><strong>L (Large)</strong></td>
+                    <td>36-38</td>
+                    <td>30-32</td>
+                    <td>27-28</td>
+                    <td>M to L frame</td>
+                </tr>
+                <tr>
+                    <td><strong>XL (Extra Large)</strong></td>
+                    <td>38-40</td>
+                    <td>32-34</td>
+                    <td>28-29</td>
+                    <td>L to XL frame</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="size-section">
+        <h2>Kurtis - Size Chart</h2>
+        <table class="size-table">
+            <thead>
+                <tr>
+                    <th>Size</th>
+                    <th>Bust (Inches)</th>
+                    <th>Length (Inches)</th>
+                    <th>Sleeve (Inches)</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>S (Small)</strong></td>
+                    <td>32-34</td>
+                    <td>42-43</td>
+                    <td>6.5-7</td>
+                    <td>XS to S frame</td>
+                </tr>
+                <tr>
+                    <td><strong>M (Medium)</strong></td>
+                    <td>34-36</td>
+                    <td>43-44</td>
+                    <td>7-7.5</td>
+                    <td>S to M frame</td>
+                </tr>
+                <tr>
+                    <td><strong>L (Large)</strong></td>
+                    <td>36-38</td>
+                    <td>44-45</td>
+                    <td>7.5-8</td>
+                    <td>M to L frame</td>
+                </tr>
+                <tr>
+                    <td><strong>XL (Extra Large)</strong></td>
+                    <td>38-40</td>
+                    <td>45-46</td>
+                    <td>8-8.5</td>
+                    <td>L to XL frame</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="size-section">
+        <h2>How to Measure Yourself</h2>
+        <div class="measurement-guide">
+            <h3>📏 Measurement Instructions</h3>
+            <div class="measurement-steps">
+                <div class="measurement-step">
+                    <h4>Bust/Chest</h4>
+                    <p>Wrap a soft measuring tape around the fullest part of your bust. Keep the tape snug but not tight. Take the measurement while wearing a regular bra.</p>
+                </div>
+                <div class="measurement-step">
+                    <h4>Waist</h4>
+                    <p>Measure around the narrowest part of your waist. Keep the tape loose and natural. Don't pull it too tight.</p>
+                </div>
+                <div class="measurement-step">
+                    <h4>Length</h4>
+                    <p>For tops: Measure from the shoulder down to where you want the top to end. For kurtis: Measure from shoulder to knee for full length.</p>
+                </div>
+                <div class="measurement-step">
+                    <h4>Sleeve</h4>
+                    <p>From the center of your back, measure to your wrist. Keep your arm slightly bent when measuring.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="size-section">
+        <div class="tips-section">
+            <h3>💡 Sizing Tips</h3>
+            <ul>
+                <li>Take measurements in the morning when your body is not swollen</li>
+                <li>Wear thin clothing when measuring for accurate results</li>
+                <li>Compare your measurements to our size chart, not the size label</li>
+                <li>If you're between sizes, go for the larger size for comfort</li>
+                <li>Our fabric has minimal stretch - choose based on comfort preference</li>
+                <li>Different styles may fit slightly differently - check product descriptions</li>
+                <li>All measurements are in inches; 1 inch = 2.54 cm</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="size-section">
+        <div class="contact-support">
+            <h3>Still Unsure About Your Size?</h3>
+            <p>No worries! Our team is here to help you find your perfect fit. Reach out to us with your measurements or let us know your usual size from other brands.</p>
+            <a href="contact.html" class="help-btn">Get Help →</a>
+            <a href="https://wa.me/916381288411?text=Hi%20Isai%20Fashions!%20I%20need%20help%20choosing%20my%20size" class="help-btn" target="_blank">WhatsApp Us</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Load cart
+function updateCartBadge() {
+    try {
+        const saved = localStorage.getItem('isai-fashions-cart');
+        const cart = saved ? JSON.parse(saved) : [];
+        const count = cart.reduce((total, item) => total + item.qty, 0);
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+            cartCount.textContent = String(count);
+        }
+    } catch (error) {
+        console.error('Error updating cart badge:', error);
+    }
+}
+
+updateCartBadge();
+</script>
+
+</body>
+</html>

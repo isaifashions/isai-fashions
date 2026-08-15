@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Isai Fashions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .contact-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid #667eea;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #5568d3;
+        }
+
+        .contact-form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        .contact-form-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #5568d3;
+        }
+
+        .social-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .social-links h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <div class="logo">
+    <img src="images/logo.png" alt="Isai Fashions">
+   </div>
+   <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="orders-dashboard.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s;" 
+           onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='#333'">📊 Dashboard</a>
+        <button class="cart-toggle" id="cartToggle" type="button" aria-label="Open cart">
+            <img src="images/cart-icon.svg" alt="Cart" class="cart-icon">
+            <span id="cartCount">0</span>
+        </button>
+   </div>
+</header>
+
+<div class="contact-container">
+    <a href="index.html" style="color: #667eea; text-decoration: none; margin-bottom: 20px; display: inline-block;">← Back to Store</a>
+
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p>We're here to help! Reach out to us through any of these channels.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>💬 WhatsApp</h3>
+            <p>Chat with us directly on WhatsApp for quick responses</p>
+            <p style="font-size: 1.1rem; font-weight: bold; color: #667eea;">+91 6381288411</p>
+            <a href="https://wa.me/916381288411?text=Hi%20Isai%20Fashions!%20I%20have%20a%20question" class="contact-link" target="_blank">Start Chat →</a>
+        </div>
+
+        <div class="contact-card">
+            <h3>📞 Phone</h3>
+            <p>Call us during business hours for immediate assistance</p>
+            <p style="font-size: 1.1rem; font-weight: bold; color: #667eea;">+91 6381288411</p>
+            <a href="tel:+916381288411" class="contact-link">Call Now →</a>
+        </div>
+
+        <div class="contact-card">
+            <h3>📧 Email</h3>
+            <p>Send us an email and we'll get back to you within 24 hours</p>
+            <p style="font-size: 0.95rem; word-break: break-all;">isai.fashions@gmail.com</p>
+            <a href="mailto:isai.fashions@gmail.com" class="contact-link">Send Email →</a>
+        </div>
+    </div>
+
+    <div class="contact-form-section">
+        <h2>Send us a Message</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" required placeholder="What is this about?">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required placeholder="Tell us more..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <div class="social-links">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#" title="Instagram" target="_blank">📷</a>
+                <a href="#" title="Facebook" target="_blank">f</a>
+                <a href="https://wa.me/916381288411" title="WhatsApp" target="_blank">💬</a>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 30px; background: #f9f9f9; border-radius: 8px;">
+        <h3 style="margin-bottom: 10px;">Business Hours</h3>
+        <p style="color: #666; margin: 5px 0;">Monday - Sunday: 10:00 AM - 8:00 PM IST</p>
+        <p style="color: #666; margin: 5px 0;">Fastest responses on WhatsApp!</p>
+    </div>
+</div>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    const whatsappMessage = `Hi Isai Fashions!\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nSubject: ${subject}\n\nMessage:\n${message}`;
+
+    window.open(`https://wa.me/916381288411?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    
+    alert('Your message will open WhatsApp. Complete the send there!');
+    this.reset();
+});
+
+// Load cart
+function updateCartBadge() {
+    try {
+        const saved = localStorage.getItem('isai-fashions-cart');
+        const cart = saved ? JSON.parse(saved) : [];
+        const count = cart.reduce((total, item) => total + item.qty, 0);
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+            cartCount.textContent = String(count);
+        }
+    } catch (error) {
+        console.error('Error updating cart badge:', error);
+    }
+}
+
+updateCartBadge();
+</script>
+
+</body>
+</html>

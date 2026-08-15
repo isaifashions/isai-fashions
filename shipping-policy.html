@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping & Returns Policy - Isai Fashions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .policy-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .policy-section {
+            margin-bottom: 40px;
+        }
+
+        .policy-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .policy-section h3 {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .policy-section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .policy-section li {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .timeline {
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #667eea;
+        }
+
+        .timeline-marker {
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            margin-left: -7.5px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            margin-left: 20px;
+        }
+
+        .timeline-content h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+
+        .timeline-content p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f5576c;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #f5576c;
+            margin-bottom: 10px;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #666;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .policy-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .policy-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <div class="logo">
+    <img src="images/logo.png" alt="Isai Fashions">
+   </div>
+   <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="orders-dashboard.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s;" 
+           onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='#333'">📊 Dashboard</a>
+        <button class="cart-toggle" id="cartToggle" type="button" aria-label="Open cart">
+            <img src="images/cart-icon.svg" alt="Cart" class="cart-icon">
+            <span id="cartCount">0</span>
+        </button>
+   </div>
+</header>
+
+<div class="policy-container">
+    <a href="index.html" style="color: #667eea; text-decoration: none; margin-bottom: 20px; display: inline-block;">← Back to Store</a>
+
+    <div class="policy-header">
+        <h1>Shipping & Returns Policy</h1>
+        <p>Last Updated: August 2024</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>🚚 Shipping Information</h2>
+        
+        <h3>Shipping Rates</h3>
+        <ul>
+            <li><strong>Free Shipping:</strong> Orders above ₹999</li>
+            <li><strong>Standard Shipping:</strong> ₹49 for orders below ₹999</li>
+            <li><strong>Cash on Delivery (COD):</strong> Additional ₹100 fee + Shipping charges</li>
+        </ul>
+
+        <h3>Delivery Timeline</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>Order Placed</h4>
+                    <p>You'll receive an order confirmation via WhatsApp</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>1-2 Days Processing</h4>
+                    <p>We prepare and pack your order with care</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>3-7 Days Delivery</h4>
+                    <p>Standard delivery across India</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h4>Order Delivered</h4>
+                    <p>Track your shipment and receive your order</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h4>📍 Delivery Coverage</h4>
+            <p>We ship to all cities and towns across India. Delivery times may vary based on location and current demand.</p>
+        </div>
+
+        <h3>Tracking Your Order</h3>
+        <p>Once your order is shipped, you'll receive a tracking link via WhatsApp. You can track your package in real-time using this link.</p>
+
+        <h3>Important Notes</h3>
+        <ul>
+            <li>Orders are processed on working days (Monday - Sunday, 10 AM - 8 PM IST)</li>
+            <li>Delivery addresses must be accurate and complete</li>
+            <li>We are not responsible for delays caused by courier partners</li>
+            <li>Signed confirmation may be required for delivery</li>
+        </ul>
+    </div>
+
+    <div class="policy-section">
+        <h2>↩️ Returns & Exchange Policy</h2>
+        
+        <h3>Return Window</h3>
+        <p>You have <strong>7 days from delivery</strong> to initiate a return or exchange. Items must be unused and in original condition with tags attached.</p>
+
+        <h3>What Can Be Returned?</h3>
+        <ul>
+            <li>Items with manufacturing defects (color fading, loose threads, etc.)</li>
+            <li>Items that don't match the description on our website</li>
+            <li>Damaged items received</li>
+            <li>Wrong item delivered</li>
+        </ul>
+
+        <div class="warning-box">
+            <h4>⚠️ Non-Returnable Items</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>Items that have been worn, washed, or damaged by customer</li>
+                <li>Items without original tags or packaging</li>
+                <li>Items showing signs of usage or wear</li>
+                <li>Items purchased on sale or clearance (check product page)</li>
+            </ul>
+        </div>
+
+        <h3>How to Initiate a Return</h3>
+        <ol style="margin-left: 20px;">
+            <li>Contact us within 7 days of delivery via WhatsApp: <strong>+91 6381288411</strong></li>
+            <li>Provide your order ID and reason for return</li>
+            <li>We'll provide you with return shipping instructions</li>
+            <li>Pack the item securely with original packaging</li>
+            <li>Use our provided return label or arrange pickup</li>
+            <li>Once we receive and inspect the item, we'll process the refund</li>
+        </ol>
+
+        <h3>Refund Timeline</h3>
+        <ul>
+            <li>Return pickup/delivery: 3-5 days</li>
+            <li>Inspection and processing: 2-3 days</li>
+            <li>Refund to original payment method: 5-7 business days</li>
+            <li><strong>Total: 10-15 business days</strong></li>
+        </ul>
+
+        <div class="highlight-box">
+            <h4>💡 Exchange Option</h4>
+            <p>Prefer a different size or color? We offer exchanges! You can exchange for a different size or style within 7 days of delivery, free of shipping charges.</p>
+        </div>
+
+        <h3>Size Issues</h3>
+        <p>If the item doesn't fit, we can exchange it for a different size absolutely free! Just let us know within 7 days. Please ensure the item is unused and in original condition.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <h4>Can I cancel my order after placing it?</h4>
+            <p>Yes, if the order hasn't been dispatched yet. Contact us immediately via WhatsApp with your order ID. We'll process the cancellation and refund within 2-3 days.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>What if my item arrives damaged?</h4>
+            <p>Please unbox and inspect your item immediately. If damaged, take photos and contact us within 24 hours with your order ID and photos. We'll send a replacement or process a full refund.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Do I have to pay for returns?</h4>
+            <p>For defective items, we'll provide a pre-paid return label. For size/style exchanges, return shipping is on us. For change-of-mind returns, return shipping cost may apply.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>How do I check my order status?</h4>
+            <p>Check your order dashboard or contact us on WhatsApp with your order ID. We'll provide real-time updates on your shipment.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>What payment methods do you accept?</h4>
+            <p>We accept GPay (UPI) and Cash on Delivery (COD). Choose your preferred payment method during checkout.</p>
+        </div>
+
+        <div class="faq-item">
+            <h4>Is my personal information secure?</h4>
+            <p>Yes! We take your privacy seriously. Your information is only used for order fulfillment and will never be shared with third parties. Read our Privacy Policy for more details.</p>
+        </div>
+    </div>
+
+    <div class="policy-section">
+        <h2>📞 Need Help?</h2>
+        <p>If you have any questions about shipping or returns, please reach out to us!</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+            <a href="https://wa.me/916381288411?text=Hi%20Isai%20Fashions!%20I%20have%20a%20question%20about%20shipping%20and%20returns" 
+               style="display: inline-block; background: #667eea; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; transition: background 0.3s;"
+               onmouseover="this.style.background='#5568d3'" onmouseout="this.style.background='#667eea'">
+               💬 WhatsApp Us
+            </a>
+            <a href="contact.html" 
+               style="display: inline-block; background: #667eea; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; transition: background 0.3s;"
+               onmouseover="this.style.background='#5568d3'" onmouseout="this.style.background='#667eea'">
+               📧 Contact Support
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Load cart
+function updateCartBadge() {
+    try {
+        const saved = localStorage.getItem('isai-fashions-cart');
+        const cart = saved ? JSON.parse(saved) : [];
+        const count = cart.reduce((total, item) => total + item.qty, 0);
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+            cartCount.textContent = String(count);
+        }
+    } catch (error) {
+        console.error('Error updating cart badge:', error);
+    }
+}
+
+updateCartBadge();
+</script>
+
+</body>
+</html>

@@ -3,6 +3,7 @@
 // ===============================
 
 const CART_KEY = "isai-fashions-cart";
+const ORDERS_KEY = "isai-fashions-orders";
 const UPI_ID = "darsudarsu19-1@okaxis";
 
 function formatPrice(value) {
@@ -15,6 +16,35 @@ function calculateCartTotals(cart, paymentMethod = "GPay (UPI)") {
     const codFee = paymentMethod.includes("Cash on Delivery") ? 100 : 0;
     const total = subtotal + shipping + codFee;
     return { subtotal, shipping, codFee, total };
+}
+
+function saveOrderToLocalStorage(cart, customerInfo, paymentMethod, codFee, subtotal, shipping, total) {
+    try {
+        const orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
+        const newOrder = {
+            id: `ORD-${Date.now()}`,
+            items: cart,
+            name: customerInfo.name,
+            phone: customerInfo.phone,
+            city: customerInfo.city,
+            pincode: customerInfo.pincode,
+            address: customerInfo.address,
+            notes: customerInfo.notes,
+            paymentMethod: paymentMethod,
+            subtotal: subtotal,
+            shipping: shipping,
+            codFee: codFee,
+            total: total,
+            createdAt: new Date().toISOString(),
+            status: 'pending'
+        };
+        orders.push(newOrder);
+        localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+        return newOrder.id;
+    } catch (error) {
+        console.error('Error saving order:', error);
+        return null;
+    }
 }
 
 function getCart() {
@@ -51,6 +81,7 @@ function getProductDetailsFromCard(card) {
     const link = card.querySelector("a[href*='product.html?id=']");
     const idMatch = link?.href?.match(/product\.html\?id=(\d+)/);
     const id = idMatch ? idMatch[1] : String(Date.now());
+    const image = card.querySelector("img")?.src || "";
 
     if (!title) return null;
 
@@ -58,7 +89,8 @@ function getProductDetailsFromCard(card) {
         id,
         name: title,
         price,
-        qty: 1
+        qty: 1,
+        image: image
     };
 }
 
@@ -210,11 +242,21 @@ window.addEventListener("load", () => {
         const { subtotal, shipping, codFee, total } = calculateCartTotals(cart, paymentMethod);
         const finalTotal = subtotal + shipping + codFee;
 
+        // Save order to localStorage for dashboard
+        const orderId = saveOrderToLocalStorage(cart, {
+            name: name,
+            phone: phone,
+            city: city,
+            pincode: pincode,
+            address: address,
+            notes: note
+        }, paymentMethod, codFee, subtotal, shipping, finalTotal);
+
         if (paymentMethod === "GPay (UPI)") {
             const orderTitle = cart.map(item => `${item.name} x${item.qty}`).join(", ");
             const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent("ISAI FASHIONS")}&am=${finalTotal.toFixed(2)}&cu=INR&tn=${encodeURIComponent(orderTitle)}`;
             window.location.href = upiLink;
-            alert("GPay has been opened for payment. Complete the payment and then confirm the order by phone or WhatsApp.");
+            alert(`Order ${orderId} has been saved! Complete the payment and then confirm by phone or WhatsApp.`);
             return;
         }
 
@@ -222,6 +264,8 @@ window.addEventListener("load", () => {
 
         const message = [
             "Hi Isai Fashions! I would like to place my order.",
+            "",
+            `Order ID: ${orderId}`,
             "",
             "Items:",
             itemsText,
@@ -260,28 +304,6 @@ if (shopBtn) {
         });
     });
 }
-
-// View Product buttons
-const buttons = document.querySelectorAll(".featured button");
-
-buttons.forEach(button => {
-    if (button.classList.contains("add-to-cart-btn")) return;
-
-    button.addEventListener("click", function () {
-        const card = this.closest(".card");
-        const product = card?.querySelector("h3")?.textContent || "this product";
-
-        const phone = "+91 6381288411";
-
-        const message =
-            `Hi Isai Fashions! I'm interested in purchasing "${product}". Please share more details.`;
-
-        window.open(
-            `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-            "_blank"
-        );
-    });
-});
 
 // Newsletter
 const form = document.querySelector(".newsletter form");

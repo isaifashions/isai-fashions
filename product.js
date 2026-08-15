@@ -4,116 +4,134 @@ const products = {
         name: "Pink Floral Cord Set",
         price: "₹749",
         image: "images/floral pink cord set.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Delicate pink floral print on soft cotton.<br>Coordinated cord set for a cohesive look.<br>Perfect for casual outings and daily comfort."
     },
     2: {
         name: "Black Floral Cord Set",
         price: "₹749",
         image: "images/floral black cord set.jpeg",
-        sizes:[ "M", "L", "XL"]
+        sizes:[ "M", "L", "XL"],
+        description: "Classic black base with vibrant floral detailing.<br>Versatile cord set that pairs with everything.<br>Ideal for both casual and semi-formal occasions."
     },
     3: {
         name: "Burnt Orange Floral Cord Set",
         price: "₹749",
         image: "images/burnt orange cord set.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Warm burnt orange with elegant floral patterns.<br>Breathable cotton blend for all-day comfort.<br>A trendy pick for weekend getaways."
     },
       4: {
         name: "Rani Pink Floral Cord Set",
         price: "₹749",
         image: "images/rani pink cord set.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Rich rani pink with beautiful floral embellishments.<br>Soft and skin-friendly fabric.<br>Makes a statement while staying comfortable."
     },
     5: {
         name: "Coral Red Floral Print V-Neck Cord Set",
         price: "₹749",
         image: "images/Coral red floral print V-neck.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Vibrant coral red with striking floral print.<br>Flattering V-neckline design.<br>Perfect for adding color to your wardrobe."
     },
     6: {
         name: "Royal blue and off-white floral print v-neck Cord Set",
         price: "₹749",
         image: "images/Royal blue v-neck.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Elegant royal blue with off-white floral accents.<br>Sophisticated V-neckline for a polished look.<br>Timeless piece for your everyday collection."
     },
 
      7: {
         name: "Black Bliss Everyday Top",
         price: "₹359",
         image: "images/black top.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Classic black single-piece top in premium cotton.<br>Simple yet elegant design for versatile styling.<br>A wardrobe essential you'll reach for daily."
     },
 
      8: {
-        name: "Blackpink Geometry-shaped Everyday Top ",
+        name: "Blackpink Geometry-shaped Everyday Top",
         price: "₹359",
         image: "images/blackpink.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Chic geometric print on a black base.<br>Modern design with a minimalist appeal.<br>Perfect for creating bold everyday looks."
     },
 
      9: {
         name: "Maroon and White Everyday Top",
         price: "₹359",
         image: "images/maroon.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Beautiful contrast of maroon and white tones.<br>Lightweight and breathable for comfort.<br>Pairs well with any bottoms you choose."
     },
 
      10: {
         name: "Red Bloom Everyday Top",
         price: "₹359",
         image: "images/red blue.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Stunning red with blooming print details.<br>Comfortable fit for all-day wear.<br>Adds vibrancy to your casual style."
     },
 
       11: {
         name: "Yellow Bliss Everyday Top",
         price: "₹359",
         image: "images/yellow.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Cheerful yellow top in soft cotton blend.<br>Brings sunshine to your everyday look.<br>Perfect for boosting your mood and style."
     },
 
       12: {
         name: "Aqua Blue Floral Everyday Top",
         price: "₹359",
         image: "images/sky blue.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Serene aqua blue with delicate floral motifs.<br>Cooling and comfortable for warm weather.<br>Great for creating fresh, breezy outfits."
     },
       13: {
         name: "A-line puff sleeve kurti",
         price: "₹859",
         image: "images/maxi.jpeg",
-        sizes:["M", "L", "XL"]
+        sizes:["M", "L", "XL"],
+        description: "Elegant A-line silhouette with trendy puff sleeves.<br>Perfect length for a sophisticated look.<br>Ideal for festivals, events, and gatherings."
     },
  14: {
         name: "Rusty orange Printed Notch Collar Straight Kurti",
         price: "₹459",
         image: "images/nrusty.jpeg",
-        sizes:["S","M", "L", "XL"]
+        sizes:["S","M", "L", "XL"],
+        description: "Earthy rusty orange with beautiful printed patterns.<br>Professional notch collar design.<br>Comfortable and elegant for any occasion."
     },
      15: {
         name: "Wine printed Notch Collar Straight Kurti",
         price: "₹459",
         image: "images/winetop.jpeg",
-        sizes:["S","M", "L", "XL"]
+        sizes:["S","M", "L", "XL"],
+        description: "Deep wine color with intricate printed details.<br>Sophisticated notch collar styling.<br>Perfect for work-from-home or casual outings."
     },
      16: {
         name: "Maroon Village folk art kurti",
         price: "₹459",
         image: "images/women.jpeg",
-        sizes:["S", "M", "L", "XL"]
+        sizes:["S", "M", "L", "XL"],
+        description: "Traditional maroon with beautiful village folk art patterns.<br>Celebration-ready with authentic cultural designs.<br>Perfect for festivals and special gatherings."
     },
     17: {
         name: "Dark Navy Floral Kurti",
         price: "₹459",
         image: "images/kerala.jpeg",
-        sizes:["S", "M", "L", "XL"]
+        sizes:["S", "M", "L", "XL"],
+        description: "Deep navy blue with exquisite floral motifs.<br>Elegant draping and comfortable fit.<br>Timeless classic for everyday elegance."
     },
 
     18: {
         name: "Mustard Yellow kathakali motif kurti",
         price: "₹459",
         image: "images/kalamkari.jpeg",
-        sizes:["S", "M", "L", "XL"]
+        sizes:["S", "M", "L", "XL"],
+        description: "Vibrant mustard with intricate kathakali art patterns.<br>Celebrates traditional Indian craftsmanship.<br>Makes a bold statement for cultural occasions."
     },
 };
 
@@ -165,6 +183,12 @@ if (product) {
     document.getElementById("product-image").src = product.image;
     document.getElementById("product-name").textContent = product.name;
     document.getElementById("product-price").textContent = product.price;
+    
+    const descriptionEl = document.getElementById("product-description");
+    if (descriptionEl && product.description) {
+        descriptionEl.innerHTML = product.description;
+    }
+    
     updateOrderTotal();
 
     product.sizes.forEach(size => {
