@@ -17,8 +17,6 @@
     <img src="images/logo.png" alt="Isai Fashions">
     </div>
     <div style="display: flex; align-items: center; gap: 15px;">
-        <a href="orders-dashboard.html" style="color: #333; text-decoration: none; font-weight: 500; transition: color 0.3s;" 
-           onmouseover="this.style.color='#667eea'" onmouseout="this.style.color='#333'">📊 Dashboard</a>
         <button class="cart-toggle" id="cartToggle" type="button" aria-label="Open cart">
             <img src="images/cart-icon.svg" alt="Cart" class="cart-icon">
             <span id="cartCount">0</span>
@@ -48,6 +46,7 @@
     <button onclick="filterProducts('all')">All</button>
     <button onclick="filterProducts('tops')">Tops</button>
     <button onclick="filterProducts('cordset')">Cord Sets</button>
+    <button onclick="filterProducts('kurtiset')">Kurti Sets</button>
 </div>
 <div class="search-section">
 <input 
@@ -126,7 +125,7 @@
     
     <img src="images/black top.jpeg" alt="black top">
     <h3>Black Bliss Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=7">
         <button>View Product</button>
     </a>
@@ -136,7 +135,7 @@
     
     <img src="images/blackpink.jpeg" alt="blackpink">
     <h3>Blackpink Geometry-shaped Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=8">
         <button>View Product</button>
     </a>
@@ -146,7 +145,7 @@
     
     <img src="images/maroon.jpeg" alt="maroon">
     <h3>Maroon and White Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=9">
         <button>View Product</button>
     </a>
@@ -156,7 +155,7 @@
     
     <img src="images/red blue.jpeg" alt="red blue">
     <h3>Red Bloom Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=10">
         <button>View Product</button>
     </a>
@@ -166,7 +165,7 @@
     
     <img src="images/yellow.jpeg" alt="yellow">
     <h3>Yellow Bliss Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=11">
         <button>View Product</button>
     </a>
@@ -176,7 +175,7 @@
     
     <img src="images/sky blue.jpeg" alt="sky blue">
     <h3>Aqua Blue Floral Everyday Top</h3>
-    <p>₹359</p>
+    <p>₹399</p>
     <a href="product.html?id=12">
         <button>View Product</button>
     </a>
@@ -241,37 +240,37 @@
     </a>
 </div>
 
-<div class="card" data-category="tops">
-    <img src="images/3red.jpeg" alt="3 Red">
-    <h3>3 Red</h3>
-    <p>₹1100</p>
+<div class="card" data-category="kurtiset">
+    <img src="images/3red.jpeg" alt="Red raw silk">
+    <h3>Red raw silk</h3>
+    <p>₹1099</p>
     <a href="product.html?id=19">
         <button>View Product</button>
     </a>
 </div>
 
-<div class="card" data-category="tops">
-    <img src="images/3wine.jpeg" alt="3 Wine">
-    <h3>3 Wine</h3>
-    <p>₹1100</p>
+<div class="card" data-category="kurtiset">
+    <img src="images/3wine.jpeg" alt="Wine raw silk">
+    <h3>Wine raw silk</h3>
+    <p>₹1099</p>
     <a href="product.html?id=20">
         <button>View Product</button>
     </a>
 </div>
 
-<div class="card" data-category="tops">
-    <img src="images/rawsilkgreen.jpeg" alt="Raw Silk Green">
-    <h3>Raw Silk Green</h3>
-    <p>₹1100</p>
+<div class="card" data-category="kurtiset">
+    <img src="images/rawsilkgreen.jpeg" alt="Green raw silk">
+    <h3>Green raw silk</h3>
+    <p>₹1099</p>
     <a href="product.html?id=21">
         <button>View Product</button>
     </a>
 </div>
 
-<div class="card" data-category="tops">
-    <img src="images/pink3.jpeg" alt="Pink 3">
-    <h3>Pink 3</h3>
-    <p>₹1100</p>
+<div class="card" data-category="kurtiset">
+    <img src="images/pink3.jpeg" alt="Pink raw silk">
+    <h3>Pink raw silk</h3>
+    <p>₹1099</p>
     <a href="product.html?id=22">
         <button>View Product</button>
     </a>
@@ -299,20 +298,32 @@
 
     <div class="cards">
 
-        <!-- Copy your best product cards here -->
-
         <div class="card">
             <span class="badge">BEST SELLER</span>
-            <img src="images/floral black cord set.jpeg">
-            <h3>Black Floral Cord Set</h3>
-            <p>₹749</p>
+            <img src="images/3red.jpeg" alt="Red raw silk">
+            <h3>Red raw silk</h3>
+            <p>₹1099</p>
         </div>
 
         <div class="card">
             <span class="badge">BEST SELLER</span>
-            <img src="images/floral pink cord set.jpeg">
-            <h3>Pink Floral Cord Set</h3>
-            <p>₹749</p>
+            <img src="images/3wine.jpeg" alt="Wine raw silk">
+            <h3>Wine raw silk</h3>
+            <p>₹1099</p>
+        </div>
+
+        <div class="card">
+            <span class="badge">BEST SELLER</span>
+            <img src="images/rawsilkgreen.jpeg" alt="Green raw silk">
+            <h3>Green raw silk</h3>
+            <p>₹1099</p>
+        </div>
+
+        <div class="card">
+            <span class="badge">BEST SELLER</span>
+            <img src="images/pink3.jpeg" alt="Pink raw silk">
+            <h3>Pink raw silk</h3>
+            <p>₹1099</p>
         </div>
 
     </div>

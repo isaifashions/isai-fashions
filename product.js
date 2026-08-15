@@ -45,7 +45,7 @@ const products = {
 
      7: {
         name: "Black Bliss Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/black top.jpeg",
         sizes:["M", "L", "XL"],
         description: "Classic black single-piece top in premium cotton.<br>Simple yet elegant design for versatile styling.<br>A wardrobe essential you'll reach for daily."
@@ -53,7 +53,7 @@ const products = {
 
      8: {
         name: "Blackpink Geometry-shaped Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/blackpink.jpeg",
         sizes:["M", "L", "XL"],
         description: "Chic geometric print on a black base.<br>Modern design with a minimalist appeal.<br>Perfect for creating bold everyday looks."
@@ -61,7 +61,7 @@ const products = {
 
      9: {
         name: "Maroon and White Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/maroon.jpeg",
         sizes:["M", "L", "XL"],
         description: "Beautiful contrast of maroon and white tones.<br>Lightweight and breathable for comfort.<br>Pairs well with any bottoms you choose."
@@ -69,7 +69,7 @@ const products = {
 
      10: {
         name: "Red Bloom Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/red blue.jpeg",
         sizes:["M", "L", "XL"],
         description: "Stunning red with blooming print details.<br>Comfortable fit for all-day wear.<br>Adds vibrancy to your casual style."
@@ -77,7 +77,7 @@ const products = {
 
       11: {
         name: "Yellow Bliss Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/yellow.jpeg",
         sizes:["M", "L", "XL"],
         description: "Cheerful yellow top in soft cotton blend.<br>Brings sunshine to your everyday look.<br>Perfect for boosting your mood and style."
@@ -85,30 +85,30 @@ const products = {
 
       12: {
         name: "Aqua Blue Floral Everyday Top",
-        price: "₹359",
+        price: "₹399",
         image: "images/sky blue.jpeg",
         sizes:["M", "L", "XL"],
         description: "Serene aqua blue with delicate floral motifs.<br>Cooling and comfortable for warm weather.<br>Great for creating fresh, breezy outfits."
     },
       13: {
         name: "A-line puff sleeve kurti",
-        price: "₹859",
+        price: "₹759",
         image: "images/maxi.jpeg",
-        sizes:["M", "L", "XL"],
+        sizes:["M", "XL", "XXL"],
         description: "Elegant A-line silhouette with trendy puff sleeves.<br>Perfect length for a sophisticated look.<br>Ideal for festivals, events, and gatherings."
     },
  14: {
         name: "Rusty orange Printed Notch Collar Straight Kurti",
         price: "₹459",
         image: "images/nrusty.jpeg",
-        sizes:["S","M", "L", "XL"],
+        sizes:[ "L", "XL"],
         description: "Earthy rusty orange with beautiful printed patterns.<br>Professional notch collar design.<br>Comfortable and elegant for any occasion."
     },
      15: {
         name: "Wine printed Notch Collar Straight Kurti",
         price: "₹459",
         image: "images/winetop.jpeg",
-        sizes:["S","M", "L", "XL"],
+        sizes:["S","M", "XL", "XXL"],
         description: "Deep wine color with intricate printed details.<br>Sophisticated notch collar styling.<br>Perfect for work-from-home or casual outings."
     },
      16: {
@@ -120,46 +120,46 @@ const products = {
     },
     17: {
         name: "Dark Navy Floral Kurti",
-        price: "₹459",
+        price: "₹399",
         image: "images/kerala.jpeg",
-        sizes:["S", "M", "L", "XL"],
+        sizes:["S","M", "L", "XL", "XXL"],
         description: "Deep navy blue with exquisite floral motifs.<br>Elegant draping and comfortable fit.<br>Timeless classic for everyday elegance."
     },
 
     18: {
         name: "Mustard Yellow kathakali motif kurti",
-        price: "₹459",
+        price: "₹399",
         image: "images/kalamkari.jpeg",
-        sizes:["S", "M", "L", "XL"],
+        sizes:["M", "L", "XXL"],
         description: "Vibrant mustard with intricate kathakali art patterns.<br>Celebrates traditional Indian craftsmanship.<br>Makes a bold statement for cultural occasions."
     },
     19: {
-        name: "3 Red",
-        price: "₹1100",
+        name: "Red raw silk",
+        price: "₹1099",
         image: "images/3red.jpeg",
-        sizes:["M", "L", "XL", "XXL"],
-        description: "Bold red statement piece with a flattering fit.<br>Designed for confident everyday styling.<br>Premium fabric finish and comfortable wear."
+        sizes:["L", "XL", "XXL"],
+        description: "Bold red statement piece with a flattering fit.<br>Designed for confident everyday styling.<br>Premium fabric finish and comfortable wear.<br>Comes with a pant and dupatta."
     },
     20: {
-        name: "3 Wine",
-        price: "₹1100",
+        name: "Wine raw silk",
+        price: "₹1099",
         image: "images/3wine.jpeg",
-        sizes:["M", "L", "XL", "XXL"],
-        description: "Elegant wine-toned design for a polished look.<br>Soft texture with a modern silhouette.<br>Perfect for both festive and day-to-day styling."
+        sizes:["XXL"],
+        description: "Elegant wine-toned design for a polished look.<br>Soft texture with a modern silhouette.<br>Perfect for both festive and day-to-day styling.<br>Comes with a pant and dupatta."
     },
     21: {
-        name: "Raw Silk Green",
-        price: "₹1100",
+        name: "Green raw silk",
+        price: "₹1099",
         image: "images/rawsilkgreen.jpeg",
-        sizes:["M", "L", "XL", "XXL"],
-        description: "Fresh raw-silk green shade with a luxurious finish.<br>Lightweight yet rich in texture.<br>Ideal for elevated casual elegance."
+        sizes:["M"],
+        description: "Fresh raw-silk green shade with a luxurious finish.<br>Lightweight yet rich in texture.<br>Ideal for elevated casual elegance.<br>Comes with a pant and dupatta."
     },
     22: {
-        name: "Pink 3",
-        price: "₹1100",
+        name: "Pink raw silk",
+        price: "₹1099",
         image: "images/pink3.jpeg",
-        sizes:["M", "L", "XL", "XXL"],
-        description: "Soft pink tone with a refined contemporary fit.<br>Comfortable premium fabric for versatile styling.<br>A graceful addition to your wardrobe essentials."
+        sizes:["L", "XXL"],
+        description: "Soft pink tone with a refined contemporary fit.<br>Comfortable premium fabric for versatile styling.<br>A graceful addition to your wardrobe essentials.<br>Comes with a pant and dupatta."
     },
 };
 

@@ -444,6 +444,22 @@
     </div>
 </div>
 
+<script>
+    const DASHBOARD_PASSWORD = "isai2026";
+    const dashboardAccess = localStorage.getItem("isai-dashboard-access");
+
+    if (dashboardAccess !== "true") {
+        const enteredPassword = prompt("Enter dashboard password:");
+
+        if (enteredPassword === DASHBOARD_PASSWORD) {
+            localStorage.setItem("isai-dashboard-access", "true");
+        } else {
+            alert("Access denied.");
+            window.location.href = "index.html";
+        }
+    }
+</script>
+
 <script src="orders-dashboard.js"></script>
 
 </body>
