@@ -133,6 +133,34 @@ const products = {
         sizes:["S", "M", "L", "XL"],
         description: "Vibrant mustard with intricate kathakali art patterns.<br>Celebrates traditional Indian craftsmanship.<br>Makes a bold statement for cultural occasions."
     },
+    19: {
+        name: "3 Red",
+        price: "₹1100",
+        image: "images/3red.jpeg",
+        sizes:["M", "L", "XL", "XXL"],
+        description: "Bold red statement piece with a flattering fit.<br>Designed for confident everyday styling.<br>Premium fabric finish and comfortable wear."
+    },
+    20: {
+        name: "3 Wine",
+        price: "₹1100",
+        image: "images/3wine.jpeg",
+        sizes:["M", "L", "XL", "XXL"],
+        description: "Elegant wine-toned design for a polished look.<br>Soft texture with a modern silhouette.<br>Perfect for both festive and day-to-day styling."
+    },
+    21: {
+        name: "Raw Silk Green",
+        price: "₹1100",
+        image: "images/rawsilkgreen.jpeg",
+        sizes:["M", "L", "XL", "XXL"],
+        description: "Fresh raw-silk green shade with a luxurious finish.<br>Lightweight yet rich in texture.<br>Ideal for elevated casual elegance."
+    },
+    22: {
+        name: "Pink 3",
+        price: "₹1100",
+        image: "images/pink3.jpeg",
+        sizes:["M", "L", "XL", "XXL"],
+        description: "Soft pink tone with a refined contemporary fit.<br>Comfortable premium fabric for versatile styling.<br>A graceful addition to your wardrobe essentials."
+    },
 };
 
 const params = new URLSearchParams(window.location.search);
