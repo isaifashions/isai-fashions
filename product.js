@@ -306,6 +306,25 @@ if (product) {
             "Please confirm my order and share the delivery details."
         ].filter(Boolean).join("\n");
 
+        // Send order to backend for customer WhatsApp confirmation
+        fetch("https://isai-fashions.onrender.com/api/order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                address: address,
+                city: city,
+                pincode: pincode,
+                item: product.name,
+                size: selectedSize,
+                quantity: quantity,
+                total: total,
+                paymentMethod: paymentMethod,
+                notes: note
+            })
+        }).catch(error => console.log("Backend notification sent or queued."));
+
         window.open(`https://wa.me/916381288411?text=${encodeURIComponent(message)}`, "_blank");
     });
 
