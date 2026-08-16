@@ -54,6 +54,51 @@ function saveOrderToLocalStorage(cart, customerInfo, paymentMethod, codFee, subt
         return null;
     }
 }
+async function saveOrderToSupabase(
+  cart,
+  customerInfo,
+  paymentMethod,
+  codFee,
+  subtotal,
+  shipping,
+  total
+) {
+  const normalizedCart = cart.map(item => ({
+    ...item,
+    size: item.size || "N/A"
+  }));
+
+  const newOrder = {
+    items: normalizedCart,
+    name: customerInfo.name,
+    phone: customerInfo.phone,
+    city: customerInfo.city,
+    pincode: customerInfo.pincode,
+    address: customerInfo.address,
+    notes: customerInfo.notes,
+    paymentMethod: paymentMethod,
+    subtotal: subtotal,
+    shipping: shipping,
+    codFee: codFee,
+    total: total,
+    createdAt: new Date().toISOString(),
+    status: "pending"
+  };
+
+  const { data, error } = await supabaseClient
+    .from("orders")
+    .insert([newOrder])
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Supabase order error:", error);
+    return null;
+  }
+
+  console.log("Order saved to Supabase:", data);
+  return data;
+}
 
 function getCart() {
     try {
@@ -232,6 +277,15 @@ function openCart() {
     document.getElementById("cartOverlay")?.classList.add("visible");
 }
 
+function setCartSubmitButtonState(isSubmitting) {
+    const submitButton = document.querySelector("#cartCheckoutForm .cart-submit");
+    if (!submitButton) return;
+
+    submitButton.disabled = isSubmitting;
+    submitButton.dataset.defaultText = submitButton.dataset.defaultText || submitButton.textContent;
+    submitButton.textContent = isSubmitting ? "Placing Order..." : submitButton.dataset.defaultText;
+}
+
 function closeCart() {
     document.getElementById("cartPanel")?.classList.remove("open");
     document.getElementById("cartOverlay")?.classList.remove("visible");
@@ -260,7 +314,7 @@ window.addEventListener("load", () => {
     cartPayment?.addEventListener("change", renderCart);
 
     const checkoutForm = document.getElementById("cartCheckoutForm");
-    checkoutForm?.addEventListener("submit", function (event) {
+    checkoutForm?.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const cart = getCart();
@@ -282,61 +336,64 @@ window.addEventListener("load", () => {
             return;
         }
 
-        const cartItemsWithSelectedSizes = cart.map(item => ({
-            ...item,
-            size: document.querySelector(`.cart-item-size-select[data-item-key="${getCartItemKey(item)}"]`)?.value || item.size || "M"
-        }));
+        setCartSubmitButtonState(true);
 
-        const { subtotal, shipping, codFee, total } = calculateCartTotals(cartItemsWithSelectedSizes, paymentMethod);
-        const finalTotal = subtotal + shipping + codFee;
+        try {
+            const cartItemsWithSelectedSizes = cart.map(item => ({
+                ...item,
+                size: document.querySelector(`.cart-item-size-select[data-item-key="${getCartItemKey(item)}"]`)?.value || item.size || "M"
+            }));
 
-        // Save order to localStorage for dashboard
-        const orderId = saveOrderToLocalStorage(cartItemsWithSelectedSizes, {
-            name: name,
-            phone: phone,
-            city: city,
-            pincode: pincode,
-            address: address,
-            notes: note
-        }, paymentMethod, codFee, subtotal, shipping, finalTotal);
+            const { subtotal, shipping, codFee, total } = calculateCartTotals(cartItemsWithSelectedSizes, paymentMethod);
+            const finalTotal = subtotal + shipping + codFee;
 
-        if (paymentMethod === "GPay (UPI)") {
-            const orderTitle = cartItemsWithSelectedSizes.map(item => `${item.name} (${item.size || 'N/A'}) x${item.qty}`).join(", ");
-            const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent("ISAI FASHIONS")}&am=${finalTotal.toFixed(2)}&cu=INR&tn=${encodeURIComponent(orderTitle)}`;
-            window.location.href = upiLink;
-            alert(`Order ${orderId} has been saved! Complete the payment and then confirm by phone or WhatsApp.`);
-            return;
+            const localOrderId = saveOrderToLocalStorage(cartItemsWithSelectedSizes, {
+                name: name,
+                phone: phone,
+                city: city,
+                pincode: pincode,
+                address: address,
+                notes: note
+            }, paymentMethod, codFee, subtotal, shipping, finalTotal);
+
+            const savedOrder = await saveOrderToSupabase(cartItemsWithSelectedSizes, {
+                name: name,
+                phone: phone,
+                city: city,
+                pincode: pincode,
+                address: address,
+                notes: note
+            }, paymentMethod, codFee, subtotal, shipping, finalTotal);
+
+            if (!savedOrder) {
+                console.error("Order save failed. Keeping local copy as fallback.");
+                alert("There was a problem placing your order. Please try again.");
+                return;
+            }
+
+            const successPageUrl = `order-success.html?payment=${encodeURIComponent(paymentMethod)}&orderId=${encodeURIComponent(savedOrder.id || localOrderId || "")}`;
+
+            if (paymentMethod === "GPay (UPI)") {
+                const orderTitle = cartItemsWithSelectedSizes.map(item => `${item.name} (${item.size || 'N/A'}) x${item.qty}`).join(", ");
+                const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent("ISAI FASHIONS")}&am=${finalTotal.toFixed(2)}&cu=INR&tn=${encodeURIComponent(orderTitle)}`;
+                window.location.href = upiLink;
+                setTimeout(() => {
+                    window.location.href = successPageUrl;
+                }, 1200);
+                return;
+            }
+
+            window.location.href = successPageUrl;
+        } catch (error) {
+            console.error("Checkout submit error:", error);
+            alert("There was a problem placing your order. Please try again.");
+        } finally {
+            setCartSubmitButtonState(false);
+            localStorage.removeItem(CART_KEY);
+            renderCart();
+            updateCartBadge();
+            checkoutForm.reset();
         }
-
-        const itemsText = cartItemsWithSelectedSizes.map(item => `${item.name} (${item.size || 'N/A'}) x${item.qty} - ${formatPrice(item.price * item.qty)}`).join("\n");
-
-        const message = [
-            "Hi Isai Fashions! I would like to place my order.",
-            "",
-            `Order ID: ${orderId}`,
-            "",
-            "Items:",
-            itemsText,
-            "",
-            `Subtotal: ${formatPrice(subtotal)}`,
-            `Shipping: ${formatPrice(shipping)}`,
-            `COD Fee: ${formatPrice(codFee)}`,
-            `Total: ${formatPrice(finalTotal)}`,
-            `Payment Method: ${paymentMethod}`,
-            `Name: ${name}`,
-            `Phone: ${phone}`,
-            `City: ${city}`,
-            `Pincode: ${pincode}`,
-            `Address: ${address}`,
-            note ? `Notes: ${note}` : "",
-            "Please confirm my order and share the delivery details."
-        ].filter(Boolean).join("\n");
-
-        window.open(`https://wa.me/916381288411?text=${encodeURIComponent(message)}`, "_blank");
-        localStorage.removeItem(CART_KEY);
-        renderCart();
-        updateCartBadge();
-        checkoutForm.reset();
     });
 });
 
