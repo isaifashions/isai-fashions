@@ -1,7 +1,11 @@
-// ===============================
-// Isai Fashions - script.js
-// ===============================
 
+const SUPABASE_URL = "https://trceilfmdgoxetlpibpv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_p6hrHewlbDo-Bh3Xhdiy8g_fNnBQO1m";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 const CART_KEY = "isai-fashions-cart";
 const ORDERS_KEY = "isai-fashions-orders";
 const UPI_ID = "darsudarsu19-1@okaxis";
