@@ -21,9 +21,13 @@ function calculateCartTotals(cart, paymentMethod = "GPay (UPI)") {
 function saveOrderToLocalStorage(cart, customerInfo, paymentMethod, codFee, subtotal, shipping, total) {
     try {
         const orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
+        const normalizedCart = cart.map(item => ({
+            ...item,
+            size: item.size || 'N/A'
+        }));
         const newOrder = {
             id: `ORD-${Date.now()}`,
-            items: cart,
+            items: normalizedCart,
             name: customerInfo.name,
             phone: customerInfo.phone,
             city: customerInfo.city,
@@ -54,6 +58,10 @@ function getCart() {
     } catch (error) {
         return [];
     }
+}
+
+function getCartItemKey(item) {
+    return `${item.id}-${item.size || "M"}`;
 }
 
 function saveCart(cart) {
@@ -96,12 +104,16 @@ function getProductDetailsFromCard(card) {
 
 function addToCart(product) {
     const cart = getCart();
-    const existingItem = cart.find(item => item.id === product.id);
+    const normalizedProduct = {
+        ...product,
+        size: product.size || "M"
+    };
+    const existingItem = cart.find(item => getCartItemKey(item) === getCartItemKey(normalizedProduct));
 
     if (existingItem) {
         existingItem.qty += 1;
     } else {
-        cart.push(product);
+        cart.push(normalizedProduct);
     }
 
     saveCart(cart);
@@ -135,29 +147,56 @@ function renderCart() {
     shippingEl.textContent = formatPrice(displayShipping);
     totalEl.textContent = formatPrice(displayTotal);
 
-    cartItems.innerHTML = cart.map(item => `
+    cartItems.innerHTML = cart.map(item => {
+        const sizeOptions = ["S", "M", "L", "XL", "XXL"];
+        const selectedSize = item.size || "M";
+        const itemKey = getCartItemKey(item);
+
+        return `
         <div class="cart-item">
             <div class="cart-item-info">
                 <h4>${item.name}</h4>
                 <p>${formatPrice(item.price)} each</p>
+                <label class="cart-item-size-control">
+                    <span>Size</span>
+                    <select class="cart-item-size-select" data-item-key="${itemKey}">
+                        ${sizeOptions.map(size => `
+                            <option value="${size}" ${size === selectedSize ? "selected" : ""}>${size}</option>
+                        `).join("")}
+                    </select>
+                </label>
             </div>
             <div class="cart-item-actions">
                 <div class="qty-controls">
-                    <button type="button" class="qty-btn" data-action="decrease" data-id="${item.id}">−</button>
+                    <button type="button" class="qty-btn" data-action="decrease" data-item-key="${itemKey}">−</button>
                     <span class="qty-value">${item.qty}</span>
-                    <button type="button" class="qty-btn" data-action="increase" data-id="${item.id}">+</button>
+                    <button type="button" class="qty-btn" data-action="increase" data-item-key="${itemKey}">+</button>
                 </div>
-                <button type="button" class="remove-item" data-id="${item.id}">Remove</button>
+                <button type="button" class="remove-item" data-item-key="${itemKey}">Remove</button>
             </div>
         </div>
-    `).join("");
+    `;
+    }).join("");
+
+    document.querySelectorAll(".cart-item-size-select").forEach(select => {
+        select.addEventListener("change", () => {
+            const itemKey = select.dataset.itemKey;
+            const cartItemsList = getCart();
+            const item = cartItemsList.find(entry => getCartItemKey(entry) === itemKey);
+
+            if (!item) return;
+
+            item.size = select.value;
+            saveCart(cartItemsList);
+        });
+    });
 
     document.querySelectorAll(".qty-btn").forEach(button => {
         button.addEventListener("click", () => {
-            const itemId = button.dataset.id;
+            const itemKey = button.dataset.itemKey;
             const action = button.dataset.action;
             const cartItemsList = getCart();
-            const item = cartItemsList.find(entry => entry.id === itemId);
+            const item = cartItemsList.find(entry => getCartItemKey(entry) === itemKey);
 
             if (!item) return;
 
@@ -165,7 +204,7 @@ function renderCart() {
             if (action === "decrease") {
                 item.qty -= 1;
                 if (item.qty <= 0) {
-                    const filtered = cartItemsList.filter(entry => entry.id !== itemId);
+                    const filtered = cartItemsList.filter(entry => getCartItemKey(entry) !== itemKey);
                     saveCart(filtered);
                     return;
                 }
@@ -177,8 +216,8 @@ function renderCart() {
 
     document.querySelectorAll(".remove-item").forEach(button => {
         button.addEventListener("click", () => {
-            const itemId = button.dataset.id;
-            const filtered = getCart().filter(entry => entry.id !== itemId);
+            const itemKey = button.dataset.itemKey;
+            const filtered = getCart().filter(entry => getCartItemKey(entry) !== itemKey);
             saveCart(filtered);
         });
     });
@@ -239,11 +278,16 @@ window.addEventListener("load", () => {
             return;
         }
 
-        const { subtotal, shipping, codFee, total } = calculateCartTotals(cart, paymentMethod);
+        const cartItemsWithSelectedSizes = cart.map(item => ({
+            ...item,
+            size: document.querySelector(`.cart-item-size-select[data-item-key="${getCartItemKey(item)}"]`)?.value || item.size || "M"
+        }));
+
+        const { subtotal, shipping, codFee, total } = calculateCartTotals(cartItemsWithSelectedSizes, paymentMethod);
         const finalTotal = subtotal + shipping + codFee;
 
         // Save order to localStorage for dashboard
-        const orderId = saveOrderToLocalStorage(cart, {
+        const orderId = saveOrderToLocalStorage(cartItemsWithSelectedSizes, {
             name: name,
             phone: phone,
             city: city,
@@ -253,14 +297,14 @@ window.addEventListener("load", () => {
         }, paymentMethod, codFee, subtotal, shipping, finalTotal);
 
         if (paymentMethod === "GPay (UPI)") {
-            const orderTitle = cart.map(item => `${item.name} x${item.qty}`).join(", ");
+            const orderTitle = cartItemsWithSelectedSizes.map(item => `${item.name} (${item.size || 'N/A'}) x${item.qty}`).join(", ");
             const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent("ISAI FASHIONS")}&am=${finalTotal.toFixed(2)}&cu=INR&tn=${encodeURIComponent(orderTitle)}`;
             window.location.href = upiLink;
             alert(`Order ${orderId} has been saved! Complete the payment and then confirm by phone or WhatsApp.`);
             return;
         }
 
-        const itemsText = cart.map(item => `${item.name} x${item.qty} - ${formatPrice(item.price * item.qty)}`).join("\n");
+        const itemsText = cartItemsWithSelectedSizes.map(item => `${item.name} (${item.size || 'N/A'}) x${item.qty} - ${formatPrice(item.price * item.qty)}`).join("\n");
 
         const message = [
             "Hi Isai Fashions! I would like to place my order.",

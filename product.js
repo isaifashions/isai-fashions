@@ -176,11 +176,29 @@ const selectedSizeLabel = document.getElementById("selected-size-label");
 const selectedQuantityLabel = document.getElementById("selected-quantity-label");
 const paymentMethodSelect = document.getElementById("payment-method");
 
+const ORDERS_KEY = "isai-fashions-orders";
 const UPI_ID = "darsudarsu19-1@okaxis";
 let selectedSize = "";
 
 function formatIndianPrice(value) {
     return `₹${Number(value).toLocaleString("en-IN")}`;
+}
+
+function saveSingleProductOrderToLocalStorage(orderData) {
+    try {
+        const orders = JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
+        orders.push({
+            id: `ORD-${Date.now()}`,
+            ...orderData,
+            createdAt: new Date().toISOString(),
+            status: 'pending'
+        });
+        localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+        return true;
+    } catch (error) {
+        console.error('Error saving product order:', error);
+        return false;
+    }
 }
 
 function updateOrderTotal() {
@@ -273,11 +291,37 @@ if (product) {
             return;
         }
 
+        const itemQty = Number(quantity || 1);
         const price = Number(product.price.replace(/[₹,]/g, ""));
-        const subtotal = price * Number(quantity || 1);
+        const subtotal = price * itemQty;
         const shipping = subtotal > 999 ? 0 : 49;
         const codFee = paymentMethod.includes("Cash on Delivery") ? 100 : 0;
         const total = subtotal + shipping + codFee;
+        const orderItems = [{
+            id: String(product.id),
+            name: product.name,
+            price: price,
+            qty: itemQty,
+            size: selectedSize,
+            image: product.image
+        }];
+
+        const orderRecord = {
+            items: orderItems,
+            name: name,
+            phone: phone,
+            city: city,
+            pincode: pincode,
+            address: address,
+            notes: note,
+            paymentMethod: paymentMethod,
+            subtotal: subtotal,
+            shipping: shipping,
+            codFee: codFee,
+            total: total
+        };
+
+        saveSingleProductOrderToLocalStorage(orderRecord);
 
         if (paymentMethod === "GPay (UPI)") {
             const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent("ISAI FASHIONS")}&am=${total.toFixed(2)}&cu=INR&tn=${encodeURIComponent(product.name)}`;

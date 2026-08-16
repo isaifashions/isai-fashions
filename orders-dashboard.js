@@ -183,7 +183,7 @@ function createOrderCard(order) {
             ${item.image ? `<div class="item-image"><img src="${item.image}" alt="${item.name}"></div>` : ''}
             <div class="item-info">
                 <div class="item-name">${item.name}</div>
-                <div class="item-details">Qty: ${item.qty} × ₹${item.price.toLocaleString('en-IN')} = ₹${(item.qty * item.price).toLocaleString('en-IN')}</div>
+                <div class="item-details">Size: ${item.size || 'N/A'} | Qty: ${item.qty} × ₹${item.price.toLocaleString('en-IN')} = ₹${(item.qty * item.price).toLocaleString('en-IN')}</div>
             </div>
         </div>
     `).join('');
@@ -263,7 +263,7 @@ function createOrderCard(order) {
 // Copy order details to clipboard
 function copyOrderToClipboard(order) {
     const itemsText = order.items.map(item => 
-        `${item.name} x${item.qty} - ₹${(item.qty * item.price).toLocaleString('en-IN')}`
+        `${item.name} (${item.size || 'N/A'}) x${item.qty} - ₹${(item.qty * item.price).toLocaleString('en-IN')}`
     ).join('\n');
 
     const text = `
@@ -311,7 +311,7 @@ function exportOrdersToCSV() {
     let csv = 'Order ID,Date,Status,Customer Name,Phone,City,Pincode,Address,Items,Subtotal,Shipping,COD Fee,Total,Payment Method,Notes\n';
 
     orders.forEach(order => {
-        const itemsText = order.items.map(i => `${i.name} (${i.qty})`).join('; ');
+        const itemsText = order.items.map(i => `${i.name} (${i.size || 'N/A'}) x${i.qty}`).join('; ');
         const date = new Date(order.createdAt).toLocaleString('en-IN');
         
         csv += `"${order.id}","${date}","${order.status}","${order.name}","${order.phone}","${order.city}","${order.pincode}","${order.address.replace(/"/g, '""')}","${itemsText}","${order.subtotal}","${order.shipping}","${order.codFee || 0}","${order.total}","${order.paymentMethod}","${(order.notes || '').replace(/"/g, '""')}"\n`;
